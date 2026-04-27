@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InovaEuro | Engajamento em Inovação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Menu principal">
+      <div class="brand">
+        <div class="brand-mark">IE</div>
+        <div>
+          <strong>InovaEuro</strong>
+          <span>Hub de Inovação</span>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navegação do sistema">
+        <button class="nav-link active" data-screen="dashboard">Dashboard</button>
+        <button class="nav-link" data-screen="ideias">Ideias</button>
+        <button class="nav-link" data-screen="desafios">Desafios</button>
+        <button class="nav-link" data-screen="aprendizado">Microlearning</button>
+        <button class="nav-link" data-screen="ranking">Ranking</button>
+        <button class="nav-link" data-screen="assistente">Assistente IA</button>
+      </nav>
+
+      <div class="user-card">
+        <div class="avatar">MP</div>
+        <div>
+          <strong>Marcos Paulo</strong>
+          <span>Colaborador • P&D</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menu">☰</button>
+        <div>
+          <p class="eyebrow">Eurofarma • Programa de Inovação</p>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <button class="primary-btn" id="openIdeaModal">+ Enviar ideia</button>
+      </header>
+
+      <section class="screen active" id="dashboard">
+        <div class="hero-card">
+          <div>
+            <span class="tag">Desafio ativo</span>
+            <h2>Como podemos melhorar a rotina dos colaboradores usando tecnologia?</h2>
+            <p>Participe com ideias, aprenda em trilhas rápidas e acumule pontos para subir no ranking de inovação.</p>
+            <div class="hero-actions">
+              <button class="primary-btn" data-go="ideias">Ver ideias</button>
+              <button class="secondary-btn" data-go="aprendizado">Iniciar trilha</button>
+            </div>
+          </div>
+          <div class="hero-score" aria-label="Pontuação atual">
+            <span>Sua pontuação</span>
+            <strong id="myScore">0</strong>
+            <small>pontos de inovação</small>
+          </div>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card">
+            <span>Ideias enviadas</span>
+            <strong id="metricIdeas">0</strong>
+            <small>registradas na plataforma</small>
+          </article>
+          <article class="metric-card">
+            <span>Votos recebidos</span>
+            <strong id="metricVotes">0</strong>
+            <small>engajamento dos colaboradores</small>
+          </article>
+          <article class="metric-card">
+            <span>Trilhas concluídas</span>
+            <strong id="metricLessons">0</strong>
+            <small>microlearning finalizado</small>
+          </article>
+          <article class="metric-card">
+            <span>Badges</span>
+            <strong id="metricBadges">0</strong>
+            <small>reconhecimentos digitais</small>
+          </article>
+        </div>
+
+        <div class="two-columns">
+          <section class="panel">
+            <div class="panel-header">
+              <h3>Últimas ideias</h3>
+              <button class="text-btn" data-go="ideias">Ver todas</button>
+            </div>
+            <div id="latestIdeas" class="compact-list"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-header">
+              <h3>Próximas ações</h3>
+            </div>
+            <div class="timeline">
+              <div><span></span><strong>Enviar uma ideia</strong><p>Compartilhe uma melhoria para o programa de inovação.</p></div>
+              <div><span></span><strong>Responder o quiz</strong><p>Ganhe pontos concluindo a trilha de inovação aberta.</p></div>
+              <div><span></span><strong>Consultar o assistente</strong><p>Tire dúvidas sobre regras, prêmios e participação.</p></div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="screen" id="ideias">
+        <div class="panel">
+          <div class="panel-header wrap">
+            <div>
+              <h2>Banco de ideias</h2>
+              <p>Ideias cadastradas pelos colaboradores, com votação e acompanhamento de status.</p>
+            </div>
+            <div class="filter-group">
+              <input type="search" id="ideaSearch" placeholder="Buscar ideia..." aria-label="Buscar ideia" />
+              <select id="statusFilter" aria-label="Filtrar por status">
+                <option value="todos">Todos</option>
+                <option value="Nova">Nova</option>
+                <option value="Em análise">Em análise</option>
+                <option value="Aprovada">Aprovada</option>
+              </select>
+            </div>
+          </div>
+          <div id="ideasGrid" class="ideas-grid"></div>
+        </div>
+      </section>
+
+      <section class="screen" id="desafios">
+        <div class="panel">
+          <div class="panel-header wrap">
+            <div>
+              <h2>Desafios de inovação</h2>
+              <p>Campanhas para gerar soluções práticas em áreas estratégicas.</p>
+            </div>
+          </div>
+          <div class="challenge-grid" id="challengeGrid"></div>
+        </div>
+      </section>
+
+      <section class="screen" id="aprendizado">
+        <div class="panel learning-panel">
+          <div class="panel-header wrap">
+            <div>
+              <h2>Microlearning</h2>
+              <p>Conteúdos rápidos para capacitar colaboradores de escritório e chão de fábrica.</p>
+            </div>
+            <span class="tag">+30 pontos ao concluir</span>
+          </div>
+
+          <div class="lesson-card">
+            <div>
+              <span class="tag light">Trilha 01</span>
+              <h3>Inovação aberta na prática</h3>
+              <p>Aprenda como qualquer colaborador pode transformar uma dor do dia a dia em oportunidade de melhoria.</p>
+            </div>
+            <ol class="lesson-steps">
+              <li>Identificar um problema real</li>
+              <li>Propor uma solução simples</li>
+              <li>Validar impacto e viabilidade</li>
+            </ol>
+          </div>
+
+          <div class="quiz-box" id="quizBox">
+            <h3>Quiz rápido</h3>
+            <p>Qual item representa melhor uma ideia inovadora para a empresa?</p>
+            <div class="quiz-options">
+              <button data-correct="false">Uma sugestão sem relação com problemas reais.</button>
+              <button data-correct="true">Uma melhoria aplicável, com impacto para pessoas, processo ou resultado.</button>
+              <button data-correct="false">Uma mudança visual sem benefício para o usuário.</button>
+            </div>
+            <p class="feedback" id="quizFeedback" role="status"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="ranking">
+        <div class="panel">
+          <div class="panel-header wrap">
+            <div>
+              <h2>Ranking e recompensas</h2>
+              <p>Pontuação por ideias, votos, trilhas concluídas e participação em desafios.</p>
+            </div>
+          </div>
+          <div class="ranking-table" id="rankingTable"></div>
+          <div class="reward-grid">
+            <article><strong>Badge Inovador</strong><span>100 pontos</span><p>Reconhecimento no mural digital.</p></article>
+            <article><strong>Mentoria com liderança</strong><span>200 pontos</span><p>Encontro para evoluir a ideia.</p></article>
+            <article><strong>Prêmio destaque</strong><span>350 pontos</span><p>Reconhecimento trimestral no programa.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="assistente">
+        <div class="panel assistant-layout">
+          <div class="assistant-info">
+            <span class="tag">Assistente Virtual</span>
+            <h2>IA para dúvidas sobre programas de inovação</h2>
+            <p>Este protótipo simula um chatbot treinado com perguntas frequentes sobre regras, pontuação, prêmios e envio de ideias.</p>
+            <div class="faq-chips">
+              <button data-question="Como envio uma ideia?">Como envio uma ideia?</button>
+              <button data-question="Como ganho pontos?">Como ganho pontos?</button>
+              <button data-question="Quem pode participar?">Quem pode participar?</button>
+            </div>
+          </div>
+          <div class="chat-card">
+            <div class="chat-window" id="chatWindow" aria-live="polite"></div>
+            <form class="chat-form" id="chatForm">
+              <input type="text" id="chatInput" placeholder="Digite sua dúvida..." aria-label="Mensagem para o assistente" required />
+              <button class="primary-btn" type="submit">Enviar</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="ideaModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="ideaModalTitle">
+      <button class="close-btn" id="closeIdeaModal" aria-label="Fechar">×</button>
+      <h2 id="ideaModalTitle">Enviar nova ideia</h2>
+      <p>Descreva uma melhoria para o programa de inovação da Eurofarma.</p>
+      <form id="ideaForm" class="idea-form">
+        <label>
+          Título da ideia
+          <input type="text" id="ideaTitle" required maxlength="80" placeholder="Ex: Totem de dúvidas rápidas" />
+        </label>
+        <label>
+          Área relacionada
+          <select id="ideaArea" required>
+            <option value="Operações">Operações</option>
+            <option value="P&D">P&D</option>
+            <option value="RH">RH</option>
+            <option value="Comunicação Interna">Comunicação Interna</option>
+            <option value="Tecnologia">Tecnologia</option>
+          </select>
+        </label>
+        <label>
+          Descrição
+          <textarea id="ideaDescription" required rows="5" maxlength="500" placeholder="Explique o problema, a solução e o benefício esperado..."></textarea>
+        </label>
+        <button class="primary-btn full" type="submit">Salvar ideia e ganhar pontos</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="src/app.js"></script>
+</body>
+</html>

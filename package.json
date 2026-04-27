@@ -1,0 +1,19 @@
+{
+  "name": "inovaeuro-plataforma-engajamento",
+  "version": "1.0.0",
+  "description": "Protótipo funcional de plataforma de engajamento em inovação para a Eurofarma.",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 5500",
+    "serve": "npx serve ."
+  },
+  "keywords": [
+    "eurofarma",
+    "inovacao",
+    "gamificacao",
+    "microlearning",
+    "chatbot"
+  ],
+  "author": "Marcos Paulo Frison, Bruno Furlan e Murilo",
+  "license": "MIT"
+}
